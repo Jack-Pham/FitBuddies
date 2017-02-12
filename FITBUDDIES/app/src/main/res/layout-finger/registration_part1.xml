@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:gridSpec="0|8|#0093eeff|K:#ee8700ff:16,l:72,l:16,r|S:#83ee00ff:16,0,l:16,56,l:16,0,r"
+    android:paddingRight="4dp"
+    android:background="#ffbbdefb">
+    <ImageButton
+        android:layout_width="176.0dp"
+        android:layout_height="153.5dp"
+        android:id="@+id/imageButton1"
+        android:layout_marginLeft="100dp"
+        android:cropToPadding="false" />
+    <TextView
+        android:text="Tap to select your profile picture"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView5"
+        android:textColor="#ff131111"
+        android:layout_marginLeft="90dp" />
+    <TextView
+        android:text="First Name"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/firstname"
+        android:textColor="#ff120e0e"
+        android:layout_marginTop="15dp" />
+    <EditText
+        android:inputType="textPersonName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/userfirstname" />
+    <TextView
+        android:text="Last Name"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tlastname"
+        android:textColor="#ff090202" />
+    <EditText
+        android:inputType="textPersonName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/userlastname" />
+    <TextView
+        android:text="Date of Birth"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:textColor="#ff0c0303" />
+    <EditText
+        android:inputType="date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/userdob" />
+    <TextView
+        android:text="Email"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/email"
+        android:textColor="#ff110a0a" />
+    <EditText
+        android:inputType="textEmailAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/useremail" />
+    <TextView
+        android:text="Password"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/pass"
+        android:textColor="#ff281d1d" />
+    <EditText
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/userpassword" />
+    <TextView
+        android:text="*Please fill out all the fields"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:textColor="#ffee1010" />
+    <Button
+        android:text="Continue"
+        android:layout_width="match_parent"
+        android:layout_height="65.5dp"
+        android:id="@+id/button1"
+        android:layout_marginTop="0.0dp"
+        android:layout_marginBottom="14.0dp"
+        android:background="#ff1e88e5"
+        android:textSize="30dp" />
+</LinearLayout>
