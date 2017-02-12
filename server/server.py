@@ -194,7 +194,8 @@ def sumPoints(id):
     conn = mysql.connect()
     cur = conn.cursor()
     cur.execute("SELECT SUM(pointsAwarded) FROM workouts WHERE userid = %s GROUP BY userid",(id))
-    data = cur.fetchone()
+    data = cur.fetchone()[0]
+    conn.close()
     return data
 
 if __name__ == '__main__':
