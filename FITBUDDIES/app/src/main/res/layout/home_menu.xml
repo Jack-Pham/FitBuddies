@@ -32,8 +32,9 @@
             android:layout_height="69.0dp"
             android:id="@+id/imageButton2"
             android:layout_gravity="right"
-            android:layout_alignRight="@id/imageView3"
+            android:layout_alignParentRight="true"
             android:background="@drawable/avatarmale"
+            android:layout_marginRight="45dp"
             android:adjustViewBounds="true"
             />
 
@@ -53,7 +54,7 @@
             android:id="@+id/imageView3"
             android:background="@drawable/us"
 
-            android:layout_marginLeft="315dp"
+            android:layout_alignRight="@id/imageButton2"
             android:layout_below="@id/imageButton2"
             />
 
@@ -269,7 +270,7 @@
             android:textColor="#ff1c0c0c"
             android:layout_marginLeft="35dp"
             android:layout_marginTop="20dp"
-            android:layout_alignBottom="@id/textView8"
+            android:layout_alignBottom="@+id/textView8"
             android:layout_below="@id/calu" />
         <TextView
             android:text="Total Points"
@@ -309,7 +310,7 @@
             android:id="@+id/textView13"
             android:textAlignment="center"
             android:paddingBottom="15dp"
-            android:layout_above="@id/button1"
+            android:layout_above="@+id/button1"
             android:textColor="#ff1d1818" />
 
         <Button
