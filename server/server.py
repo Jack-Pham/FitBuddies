@@ -177,5 +177,14 @@ def encrypt(password):
     hashed = bcrypt.hashpw(pss, bcrypt.gensalt())
     return hashed
 
+@app.route('/setGoal', methods=['POST'])
+def setGoal(id):
+    content = request.get_json()
+    conn = mysql.connect()
+    cur = conn.cursor()
+    cur.execute("INSERT INTO users (goal, intensity) VALUES (%s, %s)", (content["goal"], content["intensity"]))
+    conn.commit()
+    conn.close()
+
 if __name__ == '__main__':
     app.run()
