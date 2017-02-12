@@ -64,8 +64,10 @@ def savePicture(userId):
 
     file = request.files['imagefile']
 
-    file.filename = str(id) + JPG_EXT
+    file.filename = userId + JPG_EXT
     file.save(CURRENT_DIRECTORY + UPLOAD_FOLDER + file.filename)
+
+    return "",200
 
 
 
