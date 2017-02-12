@@ -66,7 +66,9 @@ def login():
         dt = data[1].encode('utf-8')
         if bcrypt.hashpw(password, dt) == dt:
             conn.close()
-            return get_user(data[0])        
+            return get_user(data[0])
+        else:
+            return 'password is wrong'
     else:
         return 'This email does not exist'
 
