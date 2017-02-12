@@ -35,7 +35,7 @@ def hello_world():
 def get_user(id):
     conn = mysql.connect()
     cur = conn.cursor()
-    query = "SELECT id, firstname, lastname, countryIsoAlpha2, city, dob, email FROM users WHERE id = %s"
+    query = "SELECT id, firstname, lastname, countryIsoAlpha2, city, dob, email, goal, intensity FROM users WHERE id = %s"
     cur.execute(query, id)
     data = cur.fetchone()
     conn.close()
@@ -47,7 +47,9 @@ def get_user(id):
                              "countryIsoAlpha2" : data[3],
                              "city" : data[4],
                              "dob" : data[5],
-                             "email" : data[6]
+                             "email" : data[6],
+                             "goal" : data[7],
+                             "intensity" : data[8]
                              }
                             )
     else:
