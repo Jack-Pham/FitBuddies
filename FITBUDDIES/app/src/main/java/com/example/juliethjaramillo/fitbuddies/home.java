@@ -7,7 +7,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -22,28 +21,27 @@ import java.io.InputStream;
  */
 public class home extends AppCompatActivity {
 
-    /**
-     * Touch listener to use for in-layout UI controls to delay hiding the
-     * system UI. This is to prevent the jarring behavior of controls going away
-     * while interacting with activity UI.
-     */
-    private final View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
-        @Override
-        public boolean onTouch(View view, MotionEvent motionEvent) {
-            return false;
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_menu);
+
+        Preferences prefs = new Preferences(this);
+        if(!prefs.isLoggedIn()){
+            Intent intent = new Intent(this, Login.class);
+            finish();
+            startActivity(intent);
+            return;
+        }
     }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        getDetails(1);
+        Preferences prefs = new Preferences(this);
+
+        getDetails(prefs.getUserId());
     }
 
     private void getDetails(int id) {
@@ -112,6 +110,15 @@ public class home extends AppCompatActivity {
     }
 
     private void gotBuddyInformation(int currentUser, BuddyInformation buddyInformation) {
+        if(buddyInformation == null){
+            Toast.makeText(this, "You signed up very recently and we have not found a buddy for you yet. Hang in there!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, Login.class);
+            finish();
+            startActivity(intent);
+            return;
+        }
+
+
         int buddy = (currentUser == buddyInformation.id1)?buddyInformation.id2:buddyInformation.id1;
 
         setBuddyPicture(buddy);

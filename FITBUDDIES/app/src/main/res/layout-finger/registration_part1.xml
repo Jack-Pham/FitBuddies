@@ -97,5 +97,6 @@
         android:layout_marginTop="0.0dp"
         android:layout_marginBottom="14.0dp"
         android:background="#ff1e88e5"
+        android:onClick="continueClick"
         android:textSize="30dp" />
 </LinearLayout>

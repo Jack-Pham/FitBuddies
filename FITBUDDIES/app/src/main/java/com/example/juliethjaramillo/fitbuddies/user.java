@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -40,11 +41,21 @@ public class user {
         return gson.fromJson(message, user.class);
     }
 
-    /** public static user register(String email, String pass, Date dob, String name, String last, String intensity,String  goal) throws Exception {
-        URL url = new URL(Config.baseUrl + "/createUser/" + email + "/" + pass + "/"+ dob + "/" + name + "/"+ last + "/" + intensity + "/"+ goal + "/" + country +  "/");
+    public static void register(String email, String pass, String dob, String name, String last, String intensity,String  goal) throws Exception {
+        URL url = new URL(config.baseUrl + "/user");
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod("GET");
+        conn.setDoOutput(true);
+        conn.setRequestMethod("POST");
+        conn.setRequestProperty("Content-Type", "application/json");
+        conn.connect();;
+        OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
 
+        String data = "{\"email\" : \""+email+"\", \"password\" : \"" + pass + "\"," +
+                "\"dob\" : 100000, \"countryIsoAlpha2\" : \"us\", \"city\" : \"Munich\",  \"firstname\": \"" + name + "\", \"lastname\": \"" + last + "\" }";
+
+
+        wr.write(data);
+        wr.flush();
         BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
         StringBuilder sb = new StringBuilder();
         String line;
@@ -52,17 +63,22 @@ public class user {
             sb.append(line+"\n");
         }
         br.close();
-        String message = sb.toString();
-
-        Gson gson = new Gson();
-        return gson.fromJson(message, User.class);
     }
 
-    public static User login(String email, String pass) throws Exception {
-        URL url = new URL(Config.baseUrl + "/login/" + email + "/" + pass + "/");
+    public static user login(String email, String pass) throws Exception {
+        URL url = new URL(config.baseUrl + "/login");
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod("GET");
+        conn.setDoOutput(true);
+        conn.setRequestMethod("POST");
+        conn.setRequestProperty("Content-Type", "application/json");
+        conn.connect();;
+        OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
 
+        String data = "{\"email\" : \""+email+"\", \"password\" : \"" + pass + "\" }";
+
+
+        wr.write(data);
+        wr.flush();
         BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
         StringBuilder sb = new StringBuilder();
         String line;
@@ -73,6 +89,6 @@ public class user {
         String message = sb.toString();
 
         Gson gson = new Gson();
-        return gson.fromJson(message, User.class);
-    } **/
+        return gson.fromJson(message, user.class);
+    }
 }

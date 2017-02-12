@@ -119,7 +119,7 @@ public class menu extends AppCompatActivity {
         // are available.
     }
 
-    private  void getDetails(int id) {
+    private void getDetails(int id) {
         AsyncTask<Integer, Void, user> userDetailTask = new AsyncTask<Integer, Void, user>() {
             @Override
             protected user doInBackground(Integer... params) {
@@ -159,5 +159,4 @@ public class menu extends AppCompatActivity {
     private void toggle() {
 
     }
-
 }
