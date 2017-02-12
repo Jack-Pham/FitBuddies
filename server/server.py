@@ -1,7 +1,12 @@
-from flask import Flask,json
+from flask import json
+import collections
 from flask.ext.mysql import MySQL
 import os
 import credentials
+from flask import Flask, request, redirect, url_for
+from werkzeug.utils import secure_filename
+
+import hashlib, uuid
 
 app = Flask(__name__)
 mysql = MySQL()
@@ -12,6 +17,13 @@ app.config['MYSQL_DATABASE_PASSWORD'] = os.environ['MYSQL_DATABASE_PASSWORD']
 app.config['MYSQL_DATABASE_DB'] = os.environ['MYSQL_DATABASE_DB']
 app.config['MYSQL_DATABASE_HOST'] = os.environ['MYSQL_DATABASE_HOST']
 mysql.init_app(app)
+
+# Image folder configuration
+UPLOAD_FOLDER = 'image/'
+CURRENT_DIRECTORY = os.path.dirname(os.path.abspath(__file__)) + '/'
+JPG_EXT = ".jpg"
+ALLOWED_EXTENSIONS = set(['jpg', 'jpeg', 'JPG', 'JPEG'])  # 'png', 'gif'
+DEFAULT_IMG = CURRENT_DIRECTORY + 'default-img' + JPG_EXT
 
 
 @app.route('/')
@@ -39,7 +51,22 @@ def get_user(id):
                             )
     else:
         return json.jsonify({}),404
-        pass
+
+
+@app.route('/savePicture/<userId>/', methods=['POST'])
+def savePicture(userId, lat, lng):
+
+    if not userId or userId.isspace():
+        return 'User id is empty!',500
+
+    if 'imagefile' not in request.files:
+        return 'No image send in the POST request.',500
+
+    file = request.files['imagefile']
+
+    file.filename = str(id) + JPG_EXT
+    file.save(CURRENT_DIRECTORY + UPLOAD_FOLDER + file.filename)
+
 
 
 if __name__ == '__main__':
