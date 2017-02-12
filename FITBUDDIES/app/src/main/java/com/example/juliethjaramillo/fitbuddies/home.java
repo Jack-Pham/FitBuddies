@@ -2,10 +2,10 @@ package com.example.juliethjaramillo.fitbuddies;
 
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -148,10 +148,10 @@ public class home extends AppCompatActivity {
         }
 
         TextView name = (TextView) findViewById(R.id.nameu);
-        name.setText("" + user.firstname+""+user.lastname+"");
+        name.setText("" + user.firstname+ " " + user.lastname + "");
 
         TextView age = (TextView) findViewById(R.id.au);
-        age.setText("22");
+        age.setText(Long.toString(((System.currentTimeMillis() / 1000L) - user.dob)/(24*365*60*60)));
 
     }
 
