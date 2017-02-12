@@ -2,32 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:gridSpec="0|8|#0093eeff|K:#ee8700ff:16,l:72,l:16,r|S:#83ee00ff:16,0,l:16,56,l:16,0,r"
-    android:paddingRight="4dp"
-    android:background="#ffbbdefb">
 
-    <TextClock
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textClock" />
+        android:id="@+id/textView9"
+        android:elevation="17dp"
+        android:gravity="center"
+        android:textSize="90px"
+        android:text="30 min"/>
 
-    <VideoView
-        android:layout_width="match_parent"
-        android:layout_height="485.5dp"
-        android:background="@drawable/timer"
-        android:id="@+id/videoView1" />
-    <Button
-        android:text="Video"
-        android:layout_width="match_parent"
-        android:layout_height="65.5dp"
-        android:id="@+id/button1"
-        android:layout_marginTop="0.0dp"
-        android:layout_marginBottom="14.0dp"
-        android:background="#ff1e88e5"
-        android:textSize="30dp" />
 </LinearLayout>

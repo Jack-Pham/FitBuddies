@@ -1,5 +1,6 @@
 package com.example.juliethjaramillo.fitbuddies;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -214,6 +215,11 @@ public class home extends AppCompatActivity {
     private void setBuddyFlag(String country){
         new DownloadImageTaskView((ImageView) findViewById(R.id.imageView3))
                 .execute("http://www.geognos.com/api/en/countries/flag/" + country.toUpperCase() + ".png");
+    }
+
+    public void startWorkout(View view) {
+        Intent intent= new Intent(this, WorkoutTimer.class);
+        startActivity(intent);
     }
 
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {

@@ -1,49 +1,166 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:gridSpec="0|8|#0093eeff|K:#ee8700ff:16,l:72,l:16,r|S:#83ee00ff:16,0,l:16,56,l:16,0,r"
-    android:paddingRight="4dp"
-    android:background="#ffbbdefb">
+    android:background="#0099cc"
+    tools:context="com.example.juliethjaramillo.fitbuddies.home">
 
-    <TextView
-        android:text="Weight"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+
+    <!-- This FrameLayout insets its children based on system windows using
+         android:fitsSystemWindows. -->
+    <RelativeLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/firstname"
-        android:textColor="#ff120e0e"
-        android:layout_marginTop="15dp" />
-    <EditText
-        android:inputType="number"
-        android:layout_width="96.5dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText1" />
-    <TextView
-        android:text="Lbs"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_width="27.0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView5"
-        android:layout_marginTop="-25dp"
-        android:layout_marginLeft="100dp" />
-    <TextView
-        android:text="Intensity"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tlastname"
-        android:textColor="#ff090202"
-        android:layout_marginTop="10dp" />
-    <RadioGroup
+        android:layout_height="match_parent"
+        tools:gridSpec="0|8|#0093eeff|K:#ee8700ff:16,l:72,l:16,r|S:#83ee00ff:16,0,l:16,56,l:16,0,r"
+        android:paddingRight="0dp"
+        android:background="#ffbbdefb">
+<TextView
+    android:text="Weight"
+    android:textAppearance="?android:attr/textAppearanceSmall"
+    android:layout_width="60dp"
+    android:layout_height="wrap_content"
+    android:id="@+id/firstname"
+    android:textColor="#ff120e0e"
+    android:layout_marginTop="27dp"
+    android:layout_marginLeft="20dp"/>
+<EditText
+android:inputType="number"
+android:layout_width="90.5dp"
+android:layout_height="wrap_content"
+    android:layout_marginLeft="66dp"
+    android:layout_marginTop="5dp"
+android:id="@+id/editText1" />
+<TextView
+android:text="Lbs"
+android:textAppearance="?android:attr/textAppearanceSmall"
+android:layout_width="27.0dp"
+android:layout_height="40dp"
+android:id="@+id/textView5"
+    android:layout_marginLeft="170dp"
+    android:layout_marginTop="30dp" />
+<TextView
+android:text="Fitness Goal"
+android:textAppearance="?android:attr/textAppearanceSmall"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+    android:layout_marginLeft="20dp"
+android:id="@+id/tlastname"
+android:textColor="#ff090202"
+android:layout_marginTop="340dp" />
+
+        <TextView
+android:text="Intensity"
+android:textAppearance="?android:attr/textAppearanceSmall"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:id="@+id/textView3"
+android:textColor="#ff0c0303"
+android:layout_marginTop="77dp"
+            android:layout_marginLeft="20dp"
+            />
+
+        <TextView
+            android:text="Availability"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/avalability"
+            android:textColor="#ff0c0303"
+            android:layout_marginTop="247dp"
+            android:layout_marginLeft="20dp"
+            />
+        <Button
+            android:text="Register"
+            android:layout_width="match_parent"
+            android:layout_height="65.5dp"
+            android:id="@+id/button1"
+            android:background="#ff1e88e5"
+            android:textSize="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true" />
+
+        <RadioGroup
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioGroupav"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="280dp"
+            android:orientation="horizontal">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Morning"
+            android:id="@+id/rbmorning" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Afternoon/Evening"
+            android:id="@+id/rbafternoon"
+
+            />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Night"
+            android:id="@+id/night" />
+        </RadioGroup>
+        <RadioGroup
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/radioGroupwt"
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="365dp"
+        android:layout_centerHorizontal="true">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Get Fitter"
+            android:id="@+id/radioButton1" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lose weight/Burn fat"
+            android:id="@+id/radioButton2" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gain muscle"
+            android:id="@+id/radioButton3" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Tone"
+                android:id="@+id/rbtone" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sculpt (Body building)"
+                android:id="@+id/rbbodyb" />
+
+        </RadioGroup>
+
+        <RadioGroup
+        android:minWidth="25px"
+        android:minHeight="25px"
+            android:layout_marginLeft="20dp"
+        android:layout_width="match_parent"
         android:layout_height="139.5dp"
-        android:id="@+id/radioGroup1"
-        android:layout_marginBottom="32.0dp">
+        android:id="@+id/radioGroup3"
+            android:layout_below="@+id/editText1"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="47dp">
         <RadioButton
             android:layout_width="221.5dp"
             android:layout_height="wrap_content"
@@ -65,63 +182,7 @@
             android:layout_height="wrap_content"
             android:text="Intense (4+ days week)"
             android:id="@+id/rbIntense" />
-    </RadioGroup>
-    <TextView
-        android:text="Fitness Goal"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView3"
-        android:textColor="#ff0c0303"
-        android:layout_marginTop="-15dp" />
-    <RadioGroup
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/radioGroup2"
-        android:layout_marginBottom="37.5dp">
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="Get Fitter"
-            android:id="@+id/radioButton1" />
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Lose weight/Burn fat"
-            android:id="@+id/radioButton2" />
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Gain muscle"
-            android:id="@+id/radioButton3" />
-        <RadioGroup
-            android:id="@+id/radioGroup2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="Tone"
-                android:id="@+id/radioButton1" />
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sculpt (Body building)"
-                android:id="@+id/radioButton2" />
         </RadioGroup>
-    </RadioGroup>
-    <Button
-        android:text="Register"
-        android:layout_width="match_parent"
-        android:layout_height="65.5dp"
-        android:id="@+id/button1"
-        android:layout_marginTop="0.0dp"
-        android:layout_marginBottom="14.0dp"
-        android:background="#ff1e88e5"
-        android:textSize="30dp" />
+    </RelativeLayout>
 
-</LinearLayout>
+</FrameLayout>
