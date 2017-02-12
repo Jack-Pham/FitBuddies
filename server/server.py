@@ -53,6 +53,21 @@ def get_user(id):
     else:
         return json.jsonify({}),404
 
+@app.route('/login')
+def login():
+    content = request.get_json()
+    if (isUserExist(content["email"])):
+        conn = mysql.connect()
+        cur = conn.cursor()
+        cur.execute("SELECT id, password FROM users WHERE email = %s", (content["email"]))
+        data = cur.fetchone()[1]
+        password = content["password"].encode('utf-8')
+        if bcrypt.hashpw(password, data) == data:
+            get_user(cur.fetchone()[0])
+            conn.close()
+    else:
+        return 'This email does not exist'
+
 @app.route('/usersWithoutBuddies/')
 def get_user_without_buddies():
     conn = mysql.connect()
