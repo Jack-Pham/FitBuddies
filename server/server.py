@@ -116,6 +116,22 @@ def get_user_without_buddies():
 
     return json.jsonify(returnList)
 
+@app.route('/workoutBuddyFor/<id>')
+def get_workout_buddy(id):
+    conn = mysql.connect()
+    cur = conn.cursor()
+    query = "SELECT id1, id2 FROM buddies WHERE id1 = %s or id2 = %s"
+    cur.execute(query, (id,id))
+    data = cur.fetchone()
+    conn.close()
+
+    if data is not None:
+        return json.jsonify({"id1": data[0],
+                             "id2": data[1]
+                             }
+                            )
+    else:
+        return json.jsonify({}),404
 
 
 @app.route('/savePicture/<userId>/', methods=['POST'])
@@ -194,9 +210,15 @@ def sumPoints(id):
     conn = mysql.connect()
     cur = conn.cursor()
     cur.execute("SELECT SUM(pointsAwarded) FROM workouts WHERE userid = %s GROUP BY userid",(id))
-    data = cur.fetchone()[0]
+    data = cur.fetchone()
+
+    if data is None:
+        data = '0'
+    else:
+        data = data[0]
+
     conn.close()
-    return str(data)
+    return json.jsonify({"points" : str(data)})
 
 if __name__ == '__main__':
     app.run()

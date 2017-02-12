@@ -6,7 +6,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Date;
 
 /**
  * Created by juliethjaramillo on 2/12/17.
@@ -14,17 +13,17 @@ import java.util.Date;
 
 public class user {
     public int id;
-    public Date dob;
+    public long dob;
     public String firstname;
     public String lastname;
-    public String intensity;
-    public String goal;
+    public int intensity;
+    public int goal;
     public String city;
     public String countryIsoAlpha2;
     public String email;
 
     public static user get(int id) throws Exception {
-        URL url = new URL(config.baseUrl + "/users/"+ id + "/");
+        URL url = new URL(config.baseUrl + "/users/"+ id);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
 
