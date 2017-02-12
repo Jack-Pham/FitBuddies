@@ -3,6 +3,7 @@ import collections
 from flask.ext.mysql import MySQL
 import os
 import credentials
+import bcrypt
 from flask import Flask, request, redirect, url_for, send_file
 from werkzeug.utils import secure_filename
 
@@ -119,7 +120,8 @@ def create_user():
     else:
         conn = mysql.connect()
         cur = conn.cursor()
-        cur.execute("INSERT INTO users (firstname, lastname, countryIsoAlpha2, city, dob, email, password) VALUES ( %s, %s, %s, %s, %s, %s, %s )", ( content["firstname"], content["lastname"], content["countryIsoAlpha2"], content["city"], content["dob"], content["email"], content["password"] ) )
+        password = encrypt(content["password"])
+        cur.execute("INSERT INTO users (firstname, lastname, countryIsoAlpha2, city, dob, email, password) VALUES ( %s, %s, %s, %s, %s, %s, %s )", ( content["firstname"], content["lastname"], content["countryIsoAlpha2"], content["city"], content["dob"], content["email"], password ) )
         conn.commit()
         conn.close()
         return 'Account has been created successfully'
@@ -136,6 +138,10 @@ def isUserExist(email):
         return False
     else:
         return True
+
+def encrypt(password):
+    hashed = bcrypt.hashpw(password, bcrypt.gensalt())
+    return hashed
 
 if __name__ == '__main__':
     app.run()
