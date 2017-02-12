@@ -179,7 +179,7 @@ def encrypt(password):
     hashed = bcrypt.hashpw(pss, bcrypt.gensalt())
     return hashed
 
-@app.route('/setGoal', methods=['POST'])
+@app.route('/setGoal/<id>', methods=['POST'])
 def setGoal(id):
     content = request.get_json()
     conn = mysql.connect()
