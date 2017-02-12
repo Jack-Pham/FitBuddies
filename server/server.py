@@ -114,13 +114,13 @@ def getPicture(id):
 @app.route('/user', methods=['POST'])
 def create_user():
     content = request.get_json()
-    if (isUserExist(content[email])):
+    if (isUserExist(content["email"])):
         return 'This email has already been used !!!'
     else:
         conn = mysql.connect()
         cur = conn.cursor()
         cur.execute("INSERT OR IGNORE INTO users (firstname, lastname, countryIsoAlpha2, city, dob, email, password)" \
-            "VALUES ( %s, %s, %s, %s, %s, %s, %s )", ( content[firstname], content[lastname], content[countryIsoAlpha2], content[city], content[dob], content[email], content[password] ) )
+            "VALUES ( %s, %s, %s, %s, %s, %s, %s )", ( content["firstname"], content["lastname"], content["countryIsoAlpha2"], content["city"], content["dob"], content["email"], content["password"] ) )
 
 def isUserExist(email):
     conn = mysql.connect()
