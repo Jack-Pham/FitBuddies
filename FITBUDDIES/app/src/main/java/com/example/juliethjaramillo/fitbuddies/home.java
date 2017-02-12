@@ -147,6 +147,30 @@ public class home extends AppCompatActivity {
 
         userDetailTask.execute(id);
 
+        AsyncTask<Integer, Void, Points> userPointsTask = new AsyncTask<Integer, Void, Points>() {
+            @Override
+            protected Points doInBackground(Integer... params) {
+                try {
+                    return Points.get(params[0]);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Points points) {
+                gotOwnPoints(points);
+            }
+        };
+
+        userPointsTask.execute(id);
+
+    }
+
+    private void gotOwnPoints(Points points) {
+        TextView point = (TextView) findViewById(R.id.pu);
+        point.setText(points.points);
     }
 
     private void gotUserDetails(user user) {
