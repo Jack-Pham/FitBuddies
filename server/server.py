@@ -34,7 +34,7 @@ def get_user(id):
                              "countryIsoAlpha2" : data[3],
                              "city" : data[4],
                              "dob" : data[5],
-                             "email" : "email"
+                             "email" : data[6]
                              }
                             )
     else:
