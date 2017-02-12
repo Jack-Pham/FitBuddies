@@ -61,12 +61,12 @@ def login():
         conn = mysql.connect()
         cur = conn.cursor()
         cur.execute("SELECT id, password FROM users WHERE email = %s", (content["email"]))
-        data = cur.fetchone()[1]
+        data = cur.fetchone()
         password = content["password"].encode('utf-8')
-        dt = data.encode('utf-8')
+        dt = data[1].encode('utf-8')
         if bcrypt.hashpw(password, dt) == dt:
             conn.close()
-            return get_user(cur.fetchone()[0])        
+            return get_user(data[0])        
     else:
         return 'This email does not exist'
 
