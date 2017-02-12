@@ -1,5 +1,6 @@
 package com.example.juliethjaramillo.fitbuddies;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -37,6 +38,11 @@ public class home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_menu);
+
+        Intent intent = new Intent(this, Login.class);
+        finish();
+        startActivity(intent);
+        return;
     }
 
     @Override
