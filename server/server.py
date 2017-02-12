@@ -140,7 +140,8 @@ def isUserExist(email):
         return True
 
 def encrypt(password):
-    hashed = bcrypt.hashpw(password, bcrypt.gensalt())
+    pss = password.encode('utf-8')
+    hashed = bcrypt.hashpw(pss, bcrypt.gensalt())
     return hashed
 
 if __name__ == '__main__':
