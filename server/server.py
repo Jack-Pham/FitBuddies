@@ -54,7 +54,7 @@ def get_user(id):
 
 
 @app.route('/savePicture/<userId>/', methods=['POST'])
-def savePicture(userId, lat, lng):
+def savePicture(userId):
 
     if not userId or userId.isspace():
         return 'User id is empty!',500
