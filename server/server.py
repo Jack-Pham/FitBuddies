@@ -210,7 +210,13 @@ def sumPoints(id):
     conn = mysql.connect()
     cur = conn.cursor()
     cur.execute("SELECT SUM(pointsAwarded) FROM workouts WHERE userid = %s GROUP BY userid",(id))
-    data = cur.fetchone()[0]
+    data = cur.fetchone()
+
+    if data is None:
+        data = '0'
+    else:
+        data = data[0]
+        
     conn.close()
     return json.jsonify({"points" : str(data)})
 
