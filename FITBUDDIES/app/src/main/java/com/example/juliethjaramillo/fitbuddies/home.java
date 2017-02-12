@@ -109,6 +109,15 @@ public class home extends AppCompatActivity {
     }
 
     private void gotBuddyInformation(int currentUser, BuddyInformation buddyInformation) {
+        if(buddyInformation == null){
+            Toast.makeText(this, "You signed up very recently and we have not found a buddy for you yet. Hang in there!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, Login.class);
+            finish();
+            startActivity(intent);
+            return;
+        }
+
+
         int buddy = (currentUser == buddyInformation.id1)?buddyInformation.id2:buddyInformation.id1;
 
         setBuddyPicture(buddy);

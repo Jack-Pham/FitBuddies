@@ -65,7 +65,7 @@ public class Login extends AppCompatActivity {
     }
 
     private void gotUserDetails(user user){
-        if(user.firstname != null){
+        if(user != null && user.firstname != null){
             (new Preferences(this)).setUserId(user.id);
             Intent intent = new Intent(this, home.class);
             finish();
