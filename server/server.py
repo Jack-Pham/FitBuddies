@@ -189,7 +189,13 @@ def setGoal(id):
     conn.close()
     return "Goal set"
 
-
+@app.route('/sum/id', methods=['POST'])
+def sumPoints(id):
+    conn = mysql.connect()
+    cur = conn.cursor()
+    cur.execute("SELECT SUM(pointsAwarded) FROM workouts WHERE userid = %s GROUP BY userid",(id))
+    data = cur.fetchone()
+    return data
 
 if __name__ == '__main__':
     app.run()
