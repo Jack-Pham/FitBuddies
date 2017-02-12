@@ -216,7 +216,7 @@ def sumPoints(id):
         data = '0'
     else:
         data = data[0]
-        
+
     conn.close()
     return json.jsonify({"points" : str(data)})
 
