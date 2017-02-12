@@ -3,7 +3,7 @@ import collections
 from flask.ext.mysql import MySQL
 import os
 import credentials
-from flask import Flask, request, redirect, url_for
+from flask import Flask, request, redirect, url_for, send_file
 from werkzeug.utils import secure_filename
 
 import hashlib, uuid
@@ -69,7 +69,17 @@ def savePicture(userId):
 
     return "",200
 
+# GET PICTURE
+@app.route('/getPicture/<id>/')
+def getPicture(id):
 
+    filename = CURRENT_DIRECTORY + UPLOAD_FOLDER + id + JPG_EXT
+
+    if os.path.isfile(filename):
+        return send_file(filename, mimetype='image/jpeg')
+    else:
+        print 'Failed to get image "' + id + '". Return default image.'
+    return send_file(DEFAULT_IMG, mimetype='image/jpeg')
 
 if __name__ == '__main__':
     app.run()
