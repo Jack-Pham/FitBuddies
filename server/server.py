@@ -189,14 +189,14 @@ def setGoal(id):
     conn.close()
     return "Goal set"
 
-@app.route('c<id>', methods=['GET'])
+@app.route('/sum/<id>', methods=['GET'])
 def sumPoints(id):
     conn = mysql.connect()
     cur = conn.cursor()
     cur.execute("SELECT SUM(pointsAwarded) FROM workouts WHERE userid = %s GROUP BY userid",(id))
     data = cur.fetchone()[0]
     conn.close()
-    return json.jsonify({"points" : str(data)})
+    return json.jsonify({"points" : str(data))
 
 if __name__ == '__main__':
     app.run()
