@@ -120,6 +120,8 @@ def create_user():
         conn = mysql.connect()
         cur = conn.cursor()
         cur.execute("INSERT IGNORE INTO users (firstname, lastname, countryIsoAlpha2, city, dob, email, password) VALUES ( %s, %s, %s, %s, %s, %s, %s )", ( content["firstname"], content["lastname"], content["countryIsoAlpha2"], content["city"], content["dob"], content["email"], content["password"] ) )
+        return 'Account has been created successfully'
+
 
 def isUserExist(email):
     conn = mysql.connect()
