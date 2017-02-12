@@ -189,7 +189,7 @@ def setGoal(id):
     conn.close()
     return "Goal set"
 
-@app.route('/sum/id', methods=['POST'])
+@app.route('/sum/id', methods=['GET'])
 def sumPoints(id):
     conn = mysql.connect()
     cur = conn.cursor()
