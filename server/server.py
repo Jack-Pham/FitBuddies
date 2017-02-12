@@ -121,7 +121,7 @@ def get_workout_buddy(id):
     conn = mysql.connect()
     cur = conn.cursor()
     query = "SELECT id1, id2 FROM buddies WHERE id1 = %s or id2 = %s"
-    cur.execute(query, id,id)
+    cur.execute(query, (id,id))
     data = cur.fetchone()
     conn.close()
 
