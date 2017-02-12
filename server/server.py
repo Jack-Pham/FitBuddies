@@ -54,7 +54,7 @@ def get_user(id):
         return json.jsonify({}),404
 
 
-@app.route('/login')
+@app.route('/login', methods=['POST'])
 def login():
     content = request.get_json()
     if (isUserExist(content["email"])):
