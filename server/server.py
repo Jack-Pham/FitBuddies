@@ -184,10 +184,12 @@ def setGoal(id):
     content = request.get_json()
     conn = mysql.connect()
     cur = conn.cursor()
-    cur.execute("INSERT INTO users (goal, intensity) VALUES (%s, %s)", (content["goal"], content["intensity"]))
+    cur.execute("UPDATE users SET goal = %s, intensity = %s WHERE id = %s", (content["goal"], content["intensity"], id))
     conn.commit()
     conn.close()
     return "Goal set"
+
+
 
 if __name__ == '__main__':
     app.run()
