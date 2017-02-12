@@ -28,7 +28,7 @@ def get_user(id):
     conn.close()
 
     if data is not None:
-        return json.jsonify({"id": data[0], "email": data[1], "points": data[2]})
+        return json.jsonify(data)
     else:
         return json.jsonify({}),404
         pass
