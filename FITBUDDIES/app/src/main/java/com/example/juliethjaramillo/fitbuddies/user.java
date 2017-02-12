@@ -41,7 +41,7 @@ public class user {
         return gson.fromJson(message, user.class);
     }
 
-    /** public static user register(String email, String pass, Date dob, String name, String last, String intensity,String  goal) throws Exception {
+    /* public static void register(String email, String pass, Date dob, String name, String last, String intensity,String  goal) throws Exception {
         URL url = new URL(Config.baseUrl + "/createUser/" + email + "/" + pass + "/"+ dob + "/" + name + "/"+ last + "/" + intensity + "/"+ goal + "/" + country +  "/");
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
@@ -57,7 +57,7 @@ public class user {
 
         Gson gson = new Gson();
         return gson.fromJson(message, User.class);
-    } **/
+    } */
 
     public static user login(String email, String pass) throws Exception {
         URL url = new URL(config.baseUrl + "/login");

@@ -57,7 +57,9 @@
         android:id="@+id/textViewReg"
         android:textAppearance="@android:style/TextAppearance.Material.Widget.ActionMode.Title"
         android:width="60dp"
-        android:textIsSelectable="true" />
+        android:textIsSelectable="true"
+        android:onClick="registerClick"
+        />
     <TextView
         android:text="Forgot Password."
         android:layout_width="200dp"

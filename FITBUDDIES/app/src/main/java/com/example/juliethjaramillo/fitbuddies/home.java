@@ -7,8 +7,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,33 +20,27 @@ import java.io.InputStream;
  */
 public class home extends AppCompatActivity {
 
-    /**
-     * Touch listener to use for in-layout UI controls to delay hiding the
-     * system UI. This is to prevent the jarring behavior of controls going away
-     * while interacting with activity UI.
-     */
-    private final View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
-        @Override
-        public boolean onTouch(View view, MotionEvent motionEvent) {
-            return false;
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_menu);
 
-        Intent intent = new Intent(this, Login.class);
-        finish();
-        startActivity(intent);
-        return;
+        Preferences prefs = new Preferences(this);
+        if(!prefs.isLoggedIn()){
+            Intent intent = new Intent(this, Login.class);
+            finish();
+            startActivity(intent);
+            return;
+        }
     }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        getDetails(1);
+        Preferences prefs = new Preferences(this);
+
+        getDetails(prefs.getUserId());
     }
 
     private void getDetails(int id) {

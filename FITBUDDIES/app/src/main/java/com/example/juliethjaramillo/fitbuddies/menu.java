@@ -159,5 +159,4 @@ public class menu extends AppCompatActivity {
     private void toggle() {
 
     }
-
 }

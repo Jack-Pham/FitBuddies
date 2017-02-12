@@ -1,5 +1,6 @@
 package com.example.juliethjaramillo.fitbuddies;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +24,13 @@ public class Login extends AppCompatActivity {
         super.onPostCreate(savedInstanceState);
     }
 
+    public void registerClick(View view) {
+        Intent intent = new Intent(this, Registration1.class);
+        finish();
+        startActivity(intent);
+    }
+
+
     public void loginClick(View view) {
         EditText editText1 = (EditText) findViewById(R.id.editText1);
         String email = editText1.getText().toString();
@@ -32,6 +40,8 @@ public class Login extends AppCompatActivity {
 
         tryLogin(email,password);
     }
+
+
 
     private void tryLogin(String email,String password){
         AsyncTask<String, Void, user> userLoginTask = new AsyncTask<String, Void, user>() {
@@ -56,7 +66,10 @@ public class Login extends AppCompatActivity {
 
     private void gotUserDetails(user user){
         if(user.firstname != null){
-
+            (new Preferences(this)).setUserId(user.id);
+            Intent intent = new Intent(this, home.class);
+            finish();
+            startActivity(intent);
         } else {
             Toast.makeText(this, "Invalid credentials", Toast.LENGTH_SHORT).show();
         }
