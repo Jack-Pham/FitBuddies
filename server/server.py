@@ -57,7 +57,7 @@ def get_user_without_buddies():
     conn = mysql.connect()
     cur = conn.cursor()
     query = "SELECT id, firstname, lastname, countryIsoAlpha2, city, dob, email FROM users WHERE NOT EXISTS" \
-            " (SELECT * FROM buddies WHERE id1 == id OR id2 == id)"
+            " (SELECT * FROM buddies WHERE id1 = id OR id2 = id)"
     cur.execute(query)
 
     data = cur.fetchall()
