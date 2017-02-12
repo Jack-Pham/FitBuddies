@@ -3,7 +3,7 @@ import collections
 from flask.ext.mysql import MySQL
 import os
 import credentials
-from flask import Flask, request, redirect, url_for
+from flask import Flask, request, redirect, url_for, send_file
 from werkzeug.utils import secure_filename
 
 import hashlib, uuid
@@ -69,7 +69,41 @@ def savePicture(userId):
 
     return "",200
 
+# GET PICTURE
+@app.route('/getPicture/<id>/')
+def getPicture(id):
 
+    filename = CURRENT_DIRECTORY + UPLOAD_FOLDER + id + JPG_EXT
+
+    if os.path.isfile(filename):
+        return send_file(filename, mimetype='image/jpeg')
+    else:
+        print 'Failed to get image "' + id + '". Return default image.'
+    return send_file(DEFAULT_IMG, mimetype='image/jpeg')
+
+
+@app.route('/user', methods=['POST'])
+def create_user():
+    content = request.get_json()
+    if (isUserExist(content[email])):
+        return 'This email has already been used !!!'
+    else:
+        conn = mysql.connect()
+        cur = conn.cursor()
+        cur.execute("INSERT OR IGNORE INTO users (firstname, lastname, countryIsoAlpha2, city, dob, email, password)
+            VALUES ( %s, %s, %s, %s, %s, %s, %s )", ( content[firstname], content[lastname], content[countryIsoAlpha2], content[city], content[dob], content[email], content[password] ) )
+
+def isUserExist(email):
+    conn = mysql.connect()
+    cur = conn.cursor()
+    cur.execute("SELECT email FROM users WHERE email = %s ", (email))
+    data = cur.fetchone()
+    conn.close()
+
+    if data is None:
+        return True
+    else:
+        return False
 
 if __name__ == '__main__':
     app.run()
