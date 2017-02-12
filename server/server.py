@@ -52,6 +52,35 @@ def get_user(id):
     else:
         return json.jsonify({}),404
 
+@app.route('/usersWithoutBuddies/')
+def get_user_without_buddies():
+    conn = mysql.connect()
+    cur = conn.cursor()
+    query = "SELECT id, firstname, lastname, countryIsoAlpha2, city, dob, email FROM users WHERE NOT EXISTS" \
+            " (SELECT * FROM buddies WHERE id1 == id OR id2 == id)"
+    cur.execute(query)
+
+    data = cur.fetchall()
+    conn.close()
+
+    objects_list = []
+    for row in data:
+        d = collections.OrderedDict()
+        d['id'] = row[0]
+        d['firstname'] = row[1],
+        d['lastname'] = row[2],
+        d['countryIsoAlpha2'] = row[3],
+        d['city'] = row[4],
+        d['dob'] = row[5],
+        d['email'] = row[6]
+        objects_list.append(d)
+
+    returnList = collections.OrderedDict()
+    returnList['listOfUsers'] = objects_list
+
+    return json.jsonify(returnList)
+
+
 
 @app.route('/savePicture/<userId>/', methods=['POST'])
 def savePicture(userId):
