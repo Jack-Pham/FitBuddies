@@ -22,13 +22,21 @@ def hello_world():
 def get_user(id):
     conn = mysql.connect()
     cur = conn.cursor()
-    query = "SELECT * FROM users WHERE id = %s"
+    query = "SELECT id, firstname, lastname, countryIsoAlpha2, city, dob, email FROM users WHERE id = %s"
     cur.execute(query, id)
     data = cur.fetchone()
     conn.close()
 
     if data is not None:
-        return json.jsonify(data)
+        return json.jsonify({"id": data[0],
+                             "firstname": data[1],
+                             "lastname": data[2],
+                             "countryIsoAlpha2" : data[3],
+                             "city" : data[4],
+                             "dob" : data[5],
+                             "email" : "email"
+                             }
+                            )
     else:
         return json.jsonify({}),404
         pass

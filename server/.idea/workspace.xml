@@ -24,11 +24,11 @@
       <file leaf-file-name="server.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="30" column="32" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
+            <state relative-caret-position="343">
+              <caret line="38" column="29" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="29" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
-                <marker date="1486867102435" expanded="true" signature="631:664" ph="SELECT id FR... picture" />
+                <marker date="1486867351325" expanded="true" signature="631:722" ph="SELECT id FR... picture" />
               </folding>
             </state>
           </provider>
@@ -415,11 +415,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="30" column="32" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
+        <state relative-caret-position="343">
+          <caret line="38" column="29" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="29" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
-            <marker date="1486867102435" expanded="true" signature="631:664" ph="SELECT id FR... picture" />
+            <marker date="1486867351325" expanded="true" signature="631:722" ph="SELECT id FR... picture" />
           </folding>
         </state>
       </provider>
