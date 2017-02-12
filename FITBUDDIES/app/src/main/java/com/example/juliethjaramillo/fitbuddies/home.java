@@ -166,12 +166,85 @@ public class home extends AppCompatActivity {
 
         userPointsTask.execute(id);
 
+        AsyncTask<Integer, Void, BuddyInformation> userBuddyTask = new AsyncTask<Integer, Void, BuddyInformation>() {
+            int currentUser;
+
+            @Override
+            protected BuddyInformation doInBackground(Integer... params) {
+                try {
+                    currentUser = params[0];
+                    return BuddyInformation.get(currentUser);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(BuddyInformation buddyInformation) {
+                gotBuddyInformation(currentUser,buddyInformation);
+            }
+        };
+
+        userBuddyTask.execute(id);
+
+    }
+
+    private void gotBuddyInformation(int currentUser, BuddyInformation buddyInformation) {
+        int buddy = (currentUser == buddyInformation.id1)?buddyInformation.id2:buddyInformation.id1;
+
+        setBuddyPicture(buddy);
+
+        AsyncTask<Integer, Void, user> buddyDetailTask = new AsyncTask<Integer, Void, user>() {
+            @Override
+            protected user doInBackground(Integer... params) {
+                try {
+                    return user.get(params[0]);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(user user) {
+                gotBuddyDetails(user);
+            }
+        };
+
+        buddyDetailTask.execute(buddy);
+
+        AsyncTask<Integer, Void, Points> buddyPointsTask = new AsyncTask<Integer, Void, Points>() {
+            @Override
+            protected Points doInBackground(Integer... params) {
+                try {
+                    return Points.get(params[0]);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Points points) {
+                gotBuddyPoints(points);
+            }
+        };
+
+        buddyPointsTask.execute(buddy);
+
     }
 
     private void gotOwnPoints(Points points) {
         TextView point = (TextView) findViewById(R.id.pu);
-        point.setText(points.points);
+        point.setText(Integer.toString(points.points));
     }
+
+    private void gotBuddyPoints(Points points) {
+        TextView point = (TextView) findViewById(R.id.pb);
+        point.setText(Integer.toString(points.points));
+    }
+
 
     private void gotUserDetails(user user) {
         if(user == null){
@@ -186,8 +259,26 @@ public class home extends AppCompatActivity {
 
     }
 
+    private void gotBuddyDetails(user user) {
+        if(user == null){
+            Toast.makeText(this, "Excuse our mess, our server is apparently out for a coffee break.", Toast.LENGTH_SHORT).show();
+        }
+
+        TextView name = (TextView) findViewById(R.id.nameb);
+        name.setText("" + user.firstname+ " " + user.lastname + "");
+
+        TextView age = (TextView) findViewById(R.id.agebud);
+        age.setText(Long.toString(((System.currentTimeMillis() / 1000L) - user.dob)/(24*365*60*60)));
+
+    }
+
     private void setMyPicture(int id) {
         new DownloadImageTask((ImageButton) findViewById(R.id.imageButton1))
+                .execute(config.baseUrl + "/getPicture/" + id + ".jpg/");
+    }
+
+    private void setBuddyPicture(int id) {
+        new DownloadImageTask((ImageButton) findViewById(R.id.imageButton2))
                 .execute(config.baseUrl + "/getPicture/" + id + ".jpg/");
     }
 

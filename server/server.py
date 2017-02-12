@@ -116,6 +116,22 @@ def get_user_without_buddies():
 
     return json.jsonify(returnList)
 
+@app.route('/workoutBuddyFor/<id>')
+def get_workout_buddy(id):
+    conn = mysql.connect()
+    cur = conn.cursor()
+    query = "SELECT id1, id2 FROM buddies WHERE id1 = %s or id2 = %s"
+    cur.execute(query, id,id)
+    data = cur.fetchone()
+    conn.close()
+
+    if data is not None:
+        return json.jsonify({"id1": data[0],
+                             "id2": data[1]
+                             }
+                            )
+    else:
+        return json.jsonify({}),404
 
 
 @app.route('/savePicture/<userId>/', methods=['POST'])
