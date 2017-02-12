@@ -119,8 +119,8 @@ def create_user():
     else:
         conn = mysql.connect()
         cur = conn.cursor()
-        cur.execute("INSERT OR IGNORE INTO users (firstname, lastname, countryIsoAlpha2, city, dob, email, password)
-            VALUES ( %s, %s, %s, %s, %s, %s, %s )", ( content[firstname], content[lastname], content[countryIsoAlpha2], content[city], content[dob], content[email], content[password] ) )
+        cur.execute("INSERT OR IGNORE INTO users (firstname, lastname, countryIsoAlpha2, city, dob, email, password)" \
+            "VALUES ( %s, %s, %s, %s, %s, %s, %s )", ( content[firstname], content[lastname], content[countryIsoAlpha2], content[city], content[dob], content[email], content[password] ) )
 
 def isUserExist(email):
     conn = mysql.connect()
