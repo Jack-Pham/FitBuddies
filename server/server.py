@@ -130,9 +130,9 @@ def isUserExist(email):
     conn.close()
 
     if data is None:
-        return True
-    else:
         return False
+    else:
+        return True
 
 if __name__ == '__main__':
     app.run()
