@@ -63,9 +63,10 @@ def login():
         cur.execute("SELECT id, password FROM users WHERE email = %s", (content["email"]))
         data = cur.fetchone()[1]
         password = content["password"].encode('utf-8')
-        if bcrypt.hashpw(password, data) == data:
-            get_user(cur.fetchone()[0])
+        dt = data.encode('utf-8')
+        if bcrypt.hashpw(password, dt) == dt:
             conn.close()
+            return get_user(cur.fetchone()[0])        
     else:
         return 'This email does not exist'
 
