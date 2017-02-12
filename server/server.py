@@ -61,7 +61,7 @@ def post_workout():
     conn = mysql.connect()
     cur = conn.cursor()
 
-    cur.execute("INSERT INTO workouts (userid, duration, wtimestamp, pointsAwarded, wtype) VALUES ( %s, %s, %s, %s, %s, %s, %s )",
+    cur.execute("INSERT INTO workouts (userid, duration, wtimestamp, pointsAwarded, wtype) VALUES ( %s, %s, %s, %s, %s )",
                 ( content["userid"], content["duration"], content["wtimestamp"], content["pointsAwarded"], content["wtype"] ))
     conn.commit()
     conn.close()
