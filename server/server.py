@@ -53,6 +53,7 @@ def get_user(id):
     else:
         return json.jsonify({}),404
 
+
 @app.route('/login')
 def login():
     content = request.get_json()
@@ -67,6 +68,20 @@ def login():
             conn.close()
     else:
         return 'This email does not exist'
+
+@app.route('/postWorkout/', methods=['POST'])
+def post_workout():
+    content = request.get_json()
+
+    conn = mysql.connect()
+    cur = conn.cursor()
+
+    cur.execute("INSERT INTO workouts (userid, duration, wtimestamp, pointsAwarded, wtype) VALUES ( %s, %s, %s, %s, %s )",
+                ( content["userid"], content["duration"], content["wtimestamp"], content["pointsAwarded"], content["wtype"] ))
+    conn.commit()
+    conn.close()
+    return 'Workout has been created successfully'
+
 
 @app.route('/usersWithoutBuddies/')
 def get_user_without_buddies():
