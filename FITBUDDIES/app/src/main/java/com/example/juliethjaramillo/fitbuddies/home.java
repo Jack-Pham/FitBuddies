@@ -1,15 +1,21 @@
 package com.example.juliethjaramillo.fitbuddies;
 
 import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.InputStream;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -119,7 +125,9 @@ public class home extends AppCompatActivity {
         // are available.
     }
 
-    private  void getDetails(int id) {
+    private void getDetails(int id) {
+        setMyPicture(id);
+
         AsyncTask<Integer, Void, user> userDetailTask = new AsyncTask<Integer, Void, user>() {
             @Override
             protected user doInBackground(Integer... params) {
@@ -142,7 +150,6 @@ public class home extends AppCompatActivity {
     }
 
     private void gotUserDetails(user user) {
-
         if(user == null){
             Toast.makeText(this, "Excuse our mess, our server is apparently out for a coffee break.", Toast.LENGTH_SHORT).show();
         }
@@ -155,10 +162,39 @@ public class home extends AppCompatActivity {
 
     }
 
+    private void setMyPicture(int id) {
+        new DownloadImageTask((ImageButton) findViewById(R.id.imageButton1))
+                .execute(config.baseUrl + "/getPicture/" + id + ".jpg/");
+    }
+
 
     private void toggle() {
 
     }
 
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageButton bmImage;
+
+        public DownloadImageTask(ImageButton bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
+        }
+    }
 
 }
