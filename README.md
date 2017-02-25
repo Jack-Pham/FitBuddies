@@ -1,5 +1,5 @@
 # FitBuddies
-------------------------------------------------------------------------------------------------------------------------------
+
 ## Inspiration
 
 Living healthy and getting enough exercise is a real challenge when you lead a busy life – no wonder, ten-thousands of Americans want to lose weight or get in shape but fail to stick to their goal. FitBuddies is meant to help the common worker/ student/ stay at home parents take care of their health. With this app we hope to help contribute in encouraging people all over the world improve their health and increase their quality of life. (Also, one of our teammates failed to reach his goal of losing weight because he is a lazy couch potatoe.)
